@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes/Routes');
-const port = 443;
+const port = process.env.PORT;
 
 // Setup apps
 const app = express();
