@@ -18,7 +18,7 @@ app_uuid = uuid();
 /**
  * @swagger
  * path:
- *  /hello/:
+ *  /api/v1/hello:
  *    post:
  *      summary: Ask to say hello to you
  *      tags: [Hello]
