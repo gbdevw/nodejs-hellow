@@ -4,7 +4,7 @@ const routes = require('./routes/Routes');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || "localhost";
+const host = process.env.WEBSITE_SITE_NAME || process.env.HOST || "localhost";
 const base = "/api/v1";
 
 // Setup apps
