@@ -4,14 +4,7 @@ const routes = require('./routes/Routes');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const port = process.env.PORT || 3000;
-var host;
-if(process.env.WEBSITE_NAME) {
-  host = process.env.WEBSITE_NAME + ".azurewebsites.net";
-}
-else
-{
-  host = process.env.HOST || "localhost";
-}
+const host = process.env.WEBSITE_NAME || process.env.HOST || "localhost";
 
 const base = "/api/v1";
 
@@ -43,7 +36,7 @@ const options = {
       },
       servers: [
         {
-          url: "http://" + host + ":" + port + base
+          url: base
         }
       ]
     },
@@ -63,12 +56,6 @@ app.get(base + '/docs/swagger.json', (req, res) => {
 });
 
 app.use(base + "/docs", swaggerUi.serve, swaggerUi.setup(specs));
-app.get(
-  base + "/docs",
-  swaggerUi.setup(specs, {
-    explorer: true
-  })
-);
 
 // Include routes
 app.use(base, routes);
