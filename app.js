@@ -4,7 +4,15 @@ const routes = require('./routes/Routes');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const port = process.env.PORT || 3000;
-const host = process.env.WEBSITE_NAME || process.env.HOST || "localhost";
+var host;
+if(process.env.WEBSITE_NAME) {
+  host = process.env.WEBSITE_NAME + ".azurewebsites.net";
+}
+else
+{
+  host = process.env.HOST || "localhost";
+}
+
 const base = "/api/v1";
 
 // Setup apps
@@ -32,7 +40,12 @@ const options = {
           url: "https://swagger.io",
           email: "Info@SmartBear.com"
         }
-      }
+      },
+      servers: [
+        {
+          url: "http://" + host + ":" + port + base
+        }
+      ]
     },
     apis: [
       "./models/person.js",
