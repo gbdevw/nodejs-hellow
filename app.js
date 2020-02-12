@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Swagger set up
 const options = {
     swaggerDefinition: {
-      openapi: "3.0.0",
+      swagger: "2.0",
       info: {
         title: "Say Hello API",
         version: "1.0.0",
@@ -34,11 +34,8 @@ const options = {
           email: "Info@SmartBear.com"
         }
       },
-      servers: [
-        {
-          url: base
-        }
-      ]
+      basePath: base,
+      schemes: ["http", "https"]
     },
     apis: [
       "./models/person.js",

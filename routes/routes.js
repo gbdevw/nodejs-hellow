@@ -10,31 +10,24 @@ app_uuid = uuid();
 
 /**
  * @swagger
- * tags:
- *   name: Hello
- *   description: Hello operations
- */
-
-/**
- * @swagger
- * path:
  *  /hello:
  *    post:
  *      summary: Ask to say hello to you
- *      tags: [Hello]
- *      requestBody:
- *        required: true
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Person'
+ *      description: Ask to say hello to you
+ *      produces:
+ *        - application/json
+ *      parameters:
+ *        - name: person
+ *          description: The person to say hello to
+ *          in: body
+ *          required: true
+ *          schema:
+ *            $ref: '#/definitions/Person'
  *      responses:
- *        "200":
+ *        200:
  *          description: A greeting message
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/Greeting'
+ *          schema:
+ *            $ref: '#/definitions/Greeting'
  */
 router.post('/hello', (req, res) => {
     var person = new Person(req.body.firstName, req.body.lastName);

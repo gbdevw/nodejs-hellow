@@ -1,22 +1,17 @@
 /**
  * @swagger
- *  components:
- *    schemas:
- *      Person:
- *        type: object
- *        required:
- *          - firstName
- *          - lastName
- *        properties:
- *          firstName:
- *            type: string
- *            description: First name of the person
- *          lastName:
- *            type: string
- *            description: Last name of the person
- *        example:
- *           firstName: Guillaume
- *           lastName: Braibant
+ * definitions:
+ *   Person:
+ *     required:
+ *       - firstName
+ *       - lastName
+ *     properties:
+ *       firstName:
+ *         type: string
+ *         description: First name of the person
+ *       lastName:
+ *         type: string
+ *         description: Last name of the person
  */
 class Person {
     constructor(firstName, lastName) {
