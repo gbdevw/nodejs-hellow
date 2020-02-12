@@ -40,15 +40,22 @@ const options = {
       "./routes/routes.js"
     ]
   };
-  
-  const specs = swaggerJsdoc(options);
-  app.use(base + "/docs", swaggerUi.serve);
-  app.get(
-    base + "/docs",
-    swaggerUi.setup(specs, {
-      explorer: true
-    })
-  );
+
+const specs = swaggerJsdoc(options);
+
+// Expose swagger file
+app.get(base + '/docs/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(specs);
+});
+
+app.use(base + "/docs", swaggerUi.serve, swaggerUi.setup(specs));
+app.get(
+  base + "/docs",
+  swaggerUi.setup(specs, {
+    explorer: true
+  })
+);
 
 // Include routes
 app.use(base, routes);
